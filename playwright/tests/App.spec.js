@@ -1,11 +1,8 @@
-const {
-  test,
-  expect
-} = require("@playwright/test");
+const userData = require("../user");
 
-test("test", async ({
-  page
-}) => {
+const { test, expect } = require("@playwright/test");
+
+test("test", async ({ page }) => {
   // Go to https://netology.ru/free/management#/
   await page.goto("https://netology.ru/free/management#/");
 
@@ -22,14 +19,12 @@ test("test", async ({
   // Click text=Как перенести своё дело в онлайн
   await page.click("text=Как перенести своё дело в онлайн");
   await expect(page).toHaveURL(
-      "https://netology.ru/programs/kak-perenesti-svoyo-delo-v-onlajn-bp"
+    "https://netology.ru/programs/kak-perenesti-svoyo-delo-v-onlajn-bp"
   );
 });
 
 
-NegativeAuthTest("test", async ({
-  page
-}) => {
+NegativeAuthTest("test", async ({ page }) => {
   (async () => {
       const browser = await chromium.launch({
           headless: false,
@@ -64,9 +59,9 @@ PozitiveAuthTest("test", async ({
       const page = await browser.newPage();
       await page.goto("https://netology.ru/?modal=sign_in");
       await page.getByPlaceholder('Email').click();
-      await page.getByPlaceholder('Email').fill("");
+      await page.getByPlaceholder('Email').fill(userData.emailValue);
       await page.getByPlaceholder('Пароль').click();
-      await page.getByPlaceholder('Пароль').fill("");
+      await page.getByPlaceholder('Пароль').fill(userData.passwordValue);
       await page.getByTestId('login-submit-btn').click();
       await expect(page).toHaveURL("https://netology.ru/profile");
       await expect(page).toHaveText("Моё обучение");
