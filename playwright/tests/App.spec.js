@@ -1,5 +1,8 @@
 const userData = require("../user");
 
+const email = userData.emailValue;
+const password = userData.passwordValue;
+
 const { test, expect } = require("@playwright/test");
 
 test("test", async ({ page }) => {
@@ -21,7 +24,7 @@ test("test", async ({ page }) => {
   await expect(page).toHaveURL(
     "https://netology.ru/programs/kak-perenesti-svoyo-delo-v-onlajn-bp"
   );
-});
+})();
 
 
 NegativeAuthTest("test", async ({ page }) => {
@@ -41,9 +44,10 @@ NegativeAuthTest("test", async ({ page }) => {
       await expect(page).toHaveText("Вы ввели неправильно логин или пароль");
 
       await browser.close();
-  })();
+  })
+})();
 
-});
+
 PozitiveAuthTest("test", async ({
   page
 }) => {
@@ -59,13 +63,13 @@ PozitiveAuthTest("test", async ({
       const page = await browser.newPage();
       await page.goto("https://netology.ru/?modal=sign_in");
       await page.getByPlaceholder('Email').click();
-      await page.getByPlaceholder('Email').fill(userData.emailValue);
+      await page.getByPlaceholder('Email').fill(email);
       await page.getByPlaceholder('Пароль').click();
-      await page.getByPlaceholder('Пароль').fill(userData.passwordValue);
+      await page.getByPlaceholder('Пароль').fill(password);
       await page.getByTestId('login-submit-btn').click();
       await expect(page).toHaveURL("https://netology.ru/profile");
       await expect(page).toHaveText("Моё обучение");
 
       await browser.close();
-  })();
-});
+  })
+})();
