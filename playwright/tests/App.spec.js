@@ -1,7 +1,7 @@
-const userData = require("../user");
+const user = require("../user");
 
-const email = userData.emailValue;
-const password = userData.passwordValue;
+const email = user.userData.emailValue;
+const password = user.userData.passwordValue;
 
 const { test, expect } = require("@playwright/test");
 
