@@ -24,7 +24,7 @@ test("test", async ({ page }) => {
   await expect(page).toHaveURL(
     "https://netology.ru/programs/kak-perenesti-svoyo-delo-v-onlajn-bp"
   );
-})();
+});
 
 
 NegativeAuthTest("test", async ({ page }) => {
@@ -45,7 +45,7 @@ NegativeAuthTest("test", async ({ page }) => {
 
       await browser.close();
   })
-})();
+});
 
 
 PozitiveAuthTest("test", async ({
@@ -72,4 +72,4 @@ PozitiveAuthTest("test", async ({
 
       await browser.close();
   })
-})();
+});
