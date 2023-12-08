@@ -1,7 +1,5 @@
 /node_modules/
 user.js
-PozitiveAuthTest.js
-NegativeAuthTest.js
 
 .vscode/*
 !.vscode/settings.json
